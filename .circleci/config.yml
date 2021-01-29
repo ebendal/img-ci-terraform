@@ -10,8 +10,10 @@ jobs:
     - docker/check
     - docker/build:
         image: ebendal/terraform
+        tag: latest
     - docker/push:
         image: ebendal/terraform
+        tag: latest
     environment:
       DOCKER_LOGIN: "ebendal"
   build:
