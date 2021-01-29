@@ -1,0 +1,36 @@
+version: 2.1
+orbs:
+  docker: circleci/docker@1.5.0
+jobs:
+  build-and-push:
+    executor: docker/docker
+    steps:
+    - setup_remote_docker
+    - checkout
+    - docker/check
+    - docker/build:
+        image: ebendal/terraform
+    - docker/push:
+        image: ebendal/terraform
+    environment:
+      DOCKER_LOGIN: "ebendal"
+  build:
+    executor: docker/docker
+    steps:
+    - setup_remote_docker
+    - checkout
+    - docker/build:
+        image: ebendal/terraform
+workflows:
+  master:
+    jobs:
+    - build-and-push:
+        filters:
+          branches:
+            only: master
+  branch:
+    jobs:
+    - build:
+        filters:
+          branches:
+            ignore: master
