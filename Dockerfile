@@ -1,4 +1,4 @@
-FROM debian:stable-slim
+FROM ebendal/ci-base
 
 ARG TERRAFORM_VERSION=0.14.5
 

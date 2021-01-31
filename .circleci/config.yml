@@ -9,10 +9,10 @@ jobs:
     - checkout
     - docker/check
     - docker/build:
-        image: ebendal/terraform
+        image: ebendal/ci-terraform
         tag: latest
     - docker/push:
-        image: ebendal/terraform
+        image: ebendal/ci-terraform
         tag: latest
     environment:
       DOCKER_LOGIN: "ebendal"
@@ -22,7 +22,7 @@ jobs:
     - setup_remote_docker
     - checkout
     - docker/build:
-        image: ebendal/terraform
+        image: ebendal/ci-terraform
 workflows:
   master:
     jobs:
